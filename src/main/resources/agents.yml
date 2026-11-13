@@ -1,0 +1,15 @@
+agentId: weather
+systemPrompt:
+modelName: qwen2.5:7b
+baseUrl: http://192.168.101.108:11434
+temperature:
+maxRounds:
+allowedToolNames: ['getWeather']
+---
+agentId: weather01
+systemPrompt:
+modelName: qwen2.5:7b
+baseUrl: http://192.168.101.109:11434
+temperature:
+maxRounds:
+allowedToolNames: ['getWeather']

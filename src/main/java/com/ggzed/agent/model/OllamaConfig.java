@@ -1,25 +1,11 @@
 package com.ggzed.agent.model;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+@Data
 @ConfigurationProperties(prefix = "model.ollama")
 public class OllamaConfig {
     private String baseUrl;
     private String name;
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

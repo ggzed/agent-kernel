@@ -1,0 +1,4 @@
+model:
+  ollama:
+    name: qwen2.5:7b
+    base-url: http://192.168.101.108:11434
