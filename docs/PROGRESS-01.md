@@ -11,7 +11,8 @@
 - D0 验收标准：改DB/YAML里的systemPrompt → 不重启 → refreshAgent() → 同sessionId下一轮行为变化 → Evals通过率不掉
 - D0 工作分工：白天纯内网做设计（Evals用例、配置模型、对照表）；晚上连外网做实现（调API、跑测试）
 - D1 代码来源规则：样板代码（依赖/配置/DTO）可用生成；核心逻辑（ReAct循环/保险丝/配置热更新/Evals断言）必须手写并通过"关屏默写"检验
-
+- D1 红线：代码中禁止出现 ip:port / 模型名 / key 字面量，一律进 application.yml；空 class 不计入进度
+- 
 ## 二、14天计划
 - D1 建仓库 + 跑通官方天气示例
 - D2 干掉 getConfig() 的 if-else（ConfigRepository 替代）  ← 当前位置
@@ -26,10 +27,12 @@
 - D14 README：只讲一件事——这个内核解决什么问题
 
 ## 三、当前状态
-- 已完成：新建agent-kernel仓库，加载依赖
-- 进行中：D1（今晚验收：跑通天气示例，模型真实调用一次工具）
-- 阻塞点：无（原"生成vs手写"已定规则：样板可生成，核心手写+默写）
-- 最后更新：D1
+- 已完成：D1（仓库建立 + 天气示例跑通，AiServices + Ollama qwen2.5:7b + WeatherTool 链路可通），
+- 进行中：D1 收尾 —— 补"工具真实被调用"的证据（控制台日志或双城市提问法）
+- 待清理（D2 前必做）：硬编码IP 192.168.101.108 / agents.yml 文件名带空格 / README UTF-16 乱码 / pom 三个死依赖
+- 已知雷（D6 处理，现在不动）：toolExecutionErrorHandler(failInvocation()) 会让异常直穿 HTTP 层
+- 下一步：D2 配置化，验收 = grep 不到任何 ip:port 与模型名字面量
+- 阻塞点：无
 
 ## 四、自检记录
 （每5-7轮填一次：复述"目标/冻结范围/验收标准"是否一致）
