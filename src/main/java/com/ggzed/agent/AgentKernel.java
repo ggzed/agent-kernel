@@ -27,6 +27,7 @@ public class AgentKernel {
                 .chatModel(model)
                 .tools(toolRegistry.resolve(cfg.getAllowedToolNames())) // 关键：注册工具实例
                 .systemMessageProvider(s->cfg.getSystemPrompt())
+                .maxSequentialToolsInvocations(cfg.getMaxRounds())
                 .toolArgumentsErrorHandler(ToolArgumentsErrorHandler.failInvocation())//参数错误直接导致调用失败
                 .toolExecutionErrorHandler(ToolExecutionErrorHandler.failInvocation())
                 .build();

@@ -1,15 +1,15 @@
 agentId: weather
-systemPrompt: 永远只用英文回答
+systemPrompt: 永远只用中文回答
 modelName: qwen2.5:7b
-baseUrl: http://localhost:11434
+baseUrl: ${OLLAMA_BASE_URL:http://localhost:11434}
 temperature:
-maxRounds:
+maxRounds: 3
 allowedToolNames: ['getWeather']
 ---
 agentId: weather01
 systemPrompt: 永远只用英文回答
 modelName: qwen2.5:7b
-baseUrl: http://localhost:11434
+baseUrl: ${OLLAMA_BASE_URL:http://localhost:11434}
 temperature:
-maxRounds:
+maxRounds: 3
 allowedToolNames: ['getWeather']

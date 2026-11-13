@@ -40,3 +40,11 @@
 （每5-7轮填一次：复述"目标/冻结范围/验收标准"是否一致）
 工具是否真实调用
 2026-11-14T00:49:58.245+08:00  INFO 4140 --- [nio-8080-exec-2] com.ggzed.agent.tools.WeatherTool        : [TOOL CALLED] 成都
+
+## 交接摘要（agent-kernel D2 阶段）
+- 已确认决策： LangChain4j 1.22.0 纯手工路线；代码禁 ip:port/模型名字面量；配置外置≠配置驱动，字段未被消费即死配置；.gitignore 对已跟踪文件无效。
+- 当前代码状态（远端 HEAD = 7ba9d09）： D1 关账；AgentKernel/ConfigRepository/ToolRegistry 有真实逻辑；systemPrompt 连续三轮未接入模型，D2 主验收不成立；agents.yml 内含真实 IP 且仍被跟踪；OllamaConfig 孤儿类未删；声称的 Integer/Double 类型改动未 push。
+- 下一步任务： ① push 类型改动；② systemMessageProvider(id -> cfg.getSystemPrompt()) 接线 + 跑"改 prompt 行为变"证据；③ agents.yml 走环境变量兜底 + git rm --cached；④ 删孤儿 OllamaConfig 或 agents.yml 的 baseUrl（二选一）。
+- 已知风险： failInvocation() 异常直穿 HTTP（D6 修）；每请求 new model 物理上塞不进 ChatMemory（D3 修）；行为模式——用边角工作替代核心那一行，已连续三轮。
+
+
