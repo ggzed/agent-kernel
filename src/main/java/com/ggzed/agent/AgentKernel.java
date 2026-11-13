@@ -18,7 +18,7 @@ public class AgentKernel {
     public WeatherAssistant build(AgentConfig cfg) {
         OllamaChatModel model = OllamaChatModel.builder()
                 .baseUrl(cfg.getBaseUrl()) // 你的 Ollama 地址
-                .modelName(cfg.getModelName())                 // 模型名称
+                .modelName(cfg.getModelName()) // 模型名称
                 .build();
 
         // 关键：注册工具实例
