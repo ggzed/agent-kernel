@@ -10,7 +10,7 @@ public class AgentConfig {
     private String systemPrompt;
     private String modelName;
     private String baseUrl;
-    private String temperature;
-    private String maxRounds;
+    private Double temperature;
+    private Integer maxRounds;
     private Set<String> allowedToolNames;
 }

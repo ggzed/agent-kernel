@@ -26,6 +26,7 @@ public class AgentKernel {
         return AiServices.builder(WeatherAssistant.class)
                 .chatModel(model)
                 .tools(toolRegistry.resolve(cfg.getAllowedToolNames())) // 关键：注册工具实例
+                .systemMessageProvider(s->cfg.getSystemPrompt())
                 .toolArgumentsErrorHandler(ToolArgumentsErrorHandler.failInvocation())//参数错误直接导致调用失败
                 .toolExecutionErrorHandler(ToolExecutionErrorHandler.failInvocation())
                 .build();

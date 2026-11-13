@@ -1,4 +1,0 @@
-model:
-  ollama:
-    name: qwen2.5:7b
-    base-url: ${OLLAMA_BASE_URL:http://localhost:11434}

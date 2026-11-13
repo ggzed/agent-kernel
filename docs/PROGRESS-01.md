@@ -28,11 +28,12 @@
 - D14 README：只讲一件事——这个内核解决什么问题
 
 ## 三、当前状态
-- 已完成：D1（仓库建立 + 天气示例跑通，AiServices + Ollama qwen2.5:7b + WeatherTool 链路可通），
-- 进行中：D1 收尾 —— 补"工具真实被调用"的证据（控制台日志或双城市提问法）
-- 待清理（D2 前必做）：硬编码IP 192.168.101.108 / agents.yml 文件名带空格 / README UTF-16 乱码 / pom 三个死依赖
-- 已知雷（D6 处理，现在不动）：toolExecutionErrorHandler(failInvocation()) 会让异常直穿 HTTP 层
-- 下一步：D2 配置化，验收 = grep 不到任何 ip:port 与模型名字面量
+- 已完成：D1 正式关账（工具调用证据已入自检记录）；D2 骨架落地（AgentKernel.build / ConfigRepository.load / ToolRegistry 注册与过滤，均有真实逻辑）；groupId 统一、pom 死属性清理、@P 补描述、agents.yml 落地
+- 进行中：D2 收尾（未验收） —— systemPrompt 未接入模型，改配置不改行为，主验收不成立
+- D2 验收必做：① AiServices.systemMessageProvider(id -> cfg.getSystemPrompt()) 接上，验证"改 systemPrompt 行为变化"；② 删孤儿 OllamaConfig + application.yml 的 model.ollama 段；③ maxRounds→Integer、temperature→Double 并真正传给 builder
+- 待清理：README UTF-16→UTF-8（连续两轮未动，第二次实证）；确认 application-local.yml 移出后本地连接来源
+- 已知雷（D6 不动）：failInvocation() 异常直穿 HTTP 层
+- 下一步：D2 验收通过后，D3 解决"每次请求 new model/AiServices"——这个写法物理上塞不进 ChatMemory，"同 sessionId 下一轮行为变化"无从谈起
 - 阻塞点：无
 
 ## 四、自检记录
